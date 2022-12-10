@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title%}Thank You!{% endblock %}
+
+{% block body %}
+<h1 class="display-3 text-center">Thank you for your time!</h1>
+<p class="text-center">Your answers are very valuable to us here at PhakeCo.</p>
+<div>
+<ol>
+    {% for question in questions %}
+        <li>{{question}}</li>
+    {% endfor %}
+</ol>
+</div>
+<div>
+<ol>
+    {% for answer in answers%}
+        <li>{{answer}}</li>
+    {% endfor %}
+</ol>
+</div>
+<br>
+<button class="btn btn-success"><a href="/return-home" style="color:black">Return Home</a></button>
+{% endblock %}

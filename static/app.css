@@ -1,0 +1,13 @@
+ul {
+    list-style: none;
+}
+
+div {
+    display:inline-block;
+    list-style: none; 
+    padding: 20px;
+  }
+
+.btn button {
+    margin:auto;
+}

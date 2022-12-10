@@ -3,13 +3,17 @@
 {% block title %}Survey Body{% endblock %}
 
 {% block body %}
-
-<h1 class="display-3 text-center">{{question}}</p>
+<h1 class="display-3 text-center">{{question}}</p></h1>
 <br> 
-<form action="/questions/answer">
-    <div class="input-group input-group-sm mb-3">
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="survey_answer">
-    </div>
+<form action="/questions/answer" class="text-center" name="answers">
+    <ul>
+    {% for item in options %}
+    <li><label for="">{{item}}</label><input type="radio" id={{item}} name="answers" value="{{item}}""></li>
+    {% endfor %}
+    </ul>
     <button class="btn btn-primary">Next Question</button>
 </form>
+<div class="text-center" style="margin:auto;">
+<a href="/return-home"><button class="btn btn-danger">Return Home - Reset Survey</button></a>
+</div>
 {% endblock %}

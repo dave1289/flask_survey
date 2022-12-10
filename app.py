@@ -31,20 +31,42 @@ for question in satisfaction_survey.questions:
 
 @app.route('/')
 def show_home():
-    return render_template('home.html')
+    return render_template('home.html', survey=satisfaction_survey)
 
-@app.route('/questions/0')
+@app.route('/questions')
 def first_question():
-    return render_template('questions.html', question=question_set[0])
+    options = []
+    for opt in satisfaction_survey.questions[question_index].choices:
+        options.append(opt)
+    return render_template('questions.html', options=options, question=question_set[question_index])
 
 
 @app.route('/questions/answer')
 def record_answers():
+    global question_index
+    options = []
     question_index += 1
-    prev_answer = request.args['survey_answer']
-    survey_responses.append(prev_answer)
-    return render_template('questions.html', question=question_set[question_index])
-    
+    if question_index < len(question_set):
+        for opt in satisfaction_survey.questions[question_index].choices:
+            options.append(opt)
+        prev_answer = request.args.getlist('answers')
+        survey_responses.extend(prev_answer)
+    else:
+        question_index = 0
+        user_answer = request.args.getlist('answers')
+        survey_responses.extend(user_answer)
+        return render_template('thank_you.html', answers=survey_responses, questions=question_set)
+
+    return render_template('questions.html', question=question_set[question_index], options=options)
+
+@app.route('/return-home')
+def return_home():
+    global question_index
+    global survey_responses
+    question_index = 0
+    survey_responses = []
+    return render_template('home.html', survey=satisfaction_survey)
+
 
 
 
