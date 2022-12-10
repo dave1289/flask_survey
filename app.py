@@ -38,7 +38,7 @@ def first_question():
     options = []
     for opt in satisfaction_survey.questions[question_index].choices:
         options.append(opt)
-    return render_template('questions.html', options=options, question=question_set[question_index])
+    return render_template('questions.html', options=options, question=question_set[question_index], num=question_index)
 
 
 @app.route('/questions/answer')
@@ -57,7 +57,7 @@ def record_answers():
         survey_responses.extend(user_answer)
         return render_template('thank_you.html', answers=survey_responses, questions=question_set)
 
-    return render_template('questions.html', question=question_set[question_index], options=options)
+    return render_template('questions.html', question=question_set[question_index], options=options, num=question_index)
 
 @app.route('/return-home')
 def return_home():

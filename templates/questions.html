@@ -3,7 +3,7 @@
 {% block title %}Survey Body{% endblock %}
 
 {% block body %}
-<h1 class="display-3 text-center">{{question}}</p></h1>
+<h1 class="display-3 text-center">{{num + 1}}. {{question}}</p></h1>
 <br> 
 <form action="/questions/answer" class="text-center" name="answers">
     <ul>
