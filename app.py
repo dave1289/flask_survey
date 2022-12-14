@@ -6,15 +6,18 @@ from survey import *
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'SLAP'
+app.config['SECRET_KEY'] = '089LKJa$#t2x9sgse2'
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
 
 question_set = []
+# empty list for questions to index through
 
 question_index = 0
+# int for moving through question_set list
 
 survey_responses = []
+# empty list for answers to survey
 
 satisfaction_survey = Survey(
     "Customer Satisfaction Survey",
@@ -26,15 +29,20 @@ satisfaction_survey = Survey(
                  ["Less than $10,000", "$10,000 or more"]),
         Question("Are you likely to shop here again?"),
     ])
+
+
+# creates question_set from survey.questions
 for question in satisfaction_survey.questions:
     question_set.append(question.question)
 
 @app.route('/')
 def show_home():
+    # displays home page 
     return render_template('home.html', survey=satisfaction_survey)
 
 @app.route('/questions')
 def first_question():
+    #displays first question and begins the survey
     options = []
     for opt in satisfaction_survey.questions[question_index].choices:
         options.append(opt)
@@ -43,6 +51,7 @@ def first_question():
 
 @app.route('/questions/answer')
 def record_answers():
+    # accepts previous answer and appends it to survey_responses and proceeds to next question or thankyou page
     global question_index
     options = []
     question_index += 1
@@ -61,6 +70,8 @@ def record_answers():
 
 @app.route('/return-home')
 def return_home():
+    # returns home from end of survey or reset button on each page
+    # sets question_index and survey_responses to their starting values
     global question_index
     global survey_responses
     question_index = 0
