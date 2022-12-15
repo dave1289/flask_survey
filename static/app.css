@@ -20,3 +20,9 @@ nav ul {
     list-style: none;
     border: none;
 }
+
+h4 {
+    text-decoration: underline;
+    box-shadow: grey 2px 5px 10px;
+    background-color: rgba(131, 109, 81, 0.5);
+}

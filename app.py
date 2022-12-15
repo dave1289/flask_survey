@@ -4,6 +4,14 @@ from random import randint, choice, sample
 from string import *
 from survey import *
 
+"""
+This app takes a survey object with title, instructions, and questions to create a dynamic interface to create and display the questions while saving responses for the thank you page to display
+
+Survey can have any amount of questions, answers per question, and will be adding text input functionality for **if allow_text:** and create text input for further information
+
+Please reach out with any issues at davemcelhaney@gmail.com
+"""
+
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = '089LKJa$#t2x9sgse2'
@@ -19,6 +27,7 @@ question_index = 0
 survey_responses = []
 # empty list for answers to survey
 
+# survey for app is created below, will add survey upload when we go over that functionality
 satisfaction_survey = Survey(
     "Customer Satisfaction Survey",
     "Please fill out a survey about your experience with us.",
@@ -61,6 +70,7 @@ def record_answers():
         prev_answer = request.args.getlist('answers')
         survey_responses.extend(prev_answer)
     else:
+        # make thank you page save responses, index, and answers in session storage so we can pick up our survey at a later time
         question_index = 0
         user_answer = request.args.getlist('answers')
         survey_responses.extend(user_answer)
