@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="/static/app.css">
 </head>
 <body>
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <main>
   {% with messages = get_flashed_messages(with_categories=true)%}
   {% if messages %}
+  <!-- flash message prompts -->
   <section class="messages">
     {% for category, msg in messages %}
     <p class={{category}}>{{msg}}</p>
@@ -21,11 +21,12 @@
   </section>
   {% endif %}
   {% endwith %}
-  <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">Survey Engine</a>
-      <a class="navbar-brand" href="/return-home">Reset Survey</a>
-    </div>
+  <!-- Navbar for reseting form and logo display -->
+  <nav class="navbar bg-light">
+    <form class="container-fluid">
+      <a href="/" class="btn btn-secondary">Home</a>
+      <a href="/return-home" class="btn btn-danger float-right">Reset Survey</a>
+    </form>
   </nav>
   {% block body %}  {% endblock %} 
 </main>

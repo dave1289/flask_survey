@@ -11,3 +11,12 @@ div {
 .btn button {
     margin:auto;
 }
+
+body {
+    background-color: cornsilk !important;
+}
+
+nav ul {
+    list-style: none;
+    border: none;
+}
