@@ -51,8 +51,8 @@ p {
     font-size:1.5rem;
 }
 
-#home-photo {
-    height: 33vh;
+img {
+    height: 40vh;
     width: 40vw;
     margin: auto;
     display: block;
