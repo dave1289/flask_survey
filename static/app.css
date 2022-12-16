@@ -26,3 +26,35 @@ h4 {
     box-shadow: grey 2px 5px 10px;
     background-color: rgba(131, 109, 81, 0.5);
 }
+
+.messages .error {
+    color: red;
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 2px solid rgba(255, 0,0, 0.5);
+}
+
+.messages {
+    padding: 1rem;
+    margin: auto;
+    width: 500px;
+    text-align: center;
+}
+
+.messages p {
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    box-shadow: 3px 1px 6px;
+}
+
+p {
+    font-size:1.5rem;
+}
+
+#home-photo {
+    height: 33vh;
+    width: 40vw;
+    margin: auto;
+    display: block;
+    margin-bottom: 100px;
+}
