@@ -14,7 +14,7 @@
 </div>
 <div>
 <ol>
-    {% for answer in answers%}
+    {% for answer in session['answers']%}
         <li>{{answer}}</li>
     {% endfor %}
 </ol>

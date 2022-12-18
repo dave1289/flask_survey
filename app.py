@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, redirect, flash, jsonify, ses
 from flask_debugtoolbar import DebugToolbarExtension
 from random import randint, choice, sample
 from string import *
-from survey import satisfaction_survey
+from survey import satisfaction_survey, personality_quiz
 
 """
 This app takes a survey object with title, instructions, and questions to create a dynamic interface to create and display the questions while saving responses for the thank you page to display
@@ -67,6 +67,7 @@ def record_answers():
             # make thank you page save responses, index, and answers in session storage so we can pick up our survey at a later time
             user_answer = request.args.getlist('answers')
             survey_responses.extend(user_answer)
+            session['answers'] = survey_responses
             return render_template('thank_you.html', answers=survey_responses, questions=question_set)
     return render_template('questions.html', question=question_set[question_index], options=options, num=question_index)
 
@@ -76,6 +77,7 @@ def return_home():
     # sets question_index and survey_responses to their starting values
     global question_index
     global survey_responses
+    session['answers'] = []
     question_index = 0
     survey_responses = []
     return render_template('home.html', survey=satisfaction_survey)
@@ -84,5 +86,20 @@ def return_home():
 def show_info():
     return render_template('about_us.html')
 
+##sessions demo
+# @app.route('/login-form')
+# def show_login():
+#     return render_template('login_form.html')
 
 
+# @app.route('/invitation')
+# def show_invite():
+#     if session.get('entered-pin', False):
+#         return render_template('invite.html')
+#     else:
+#         return redirect('/login-form')
+
+# @app.route('/login')
+# def verify_secret_code():
+#     session['entered-pin'] = request.args['secret_code']
+#     return redirect('/invitation')
