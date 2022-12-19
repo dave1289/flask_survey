@@ -86,7 +86,7 @@ def return_home():
 def show_info():
     return render_template('about_us.html')
 
-##sessions demo
+##**************************sessions demo**********************************
 # @app.route('/login-form')
 # def show_login():
 #     return render_template('login_form.html')
