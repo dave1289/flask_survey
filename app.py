@@ -16,6 +16,8 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'secretkey'
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+app.debug = True
+
 debug = DebugToolbarExtension(app)
 
 question_set = []
@@ -30,6 +32,11 @@ survey_responses = []
 # creates question_set from survey.questions
 for question in satisfaction_survey.questions:
     question_set.append(question.question)
+
+@app.route('/old-home')
+def old_home_redirect():
+    # redirect from old homepage
+    return redirect('/')
 
 @app.route('/')
 def show_home():
